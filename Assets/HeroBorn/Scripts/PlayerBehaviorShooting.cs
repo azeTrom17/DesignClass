@@ -14,17 +14,15 @@ public class PlayerBehaviorShooting : MonoBehaviour
     public float BulletSpeed = 100f;
 
     private Rigidbody _rb;
+    private CapsuleCollider _col;
     private bool _isJumping;
     private bool _isShooting;
-//    private float _isJumping;
 
-    private CapsuleCollider _col;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-
         _col = GetComponent<CapsuleCollider>();
     }
 
@@ -32,8 +30,6 @@ public class PlayerBehaviorShooting : MonoBehaviour
     void Update()
     {
         _isJumping |= Input.GetKeyDown(KeyCode.J);
-//        _isJumping |= Input.GetKeyDown(KeyCode.Space);
-//        _isJumping = Input.GetAxis("Jump");
 
         _isShooting |= Input.GetKeyDown(KeyCode.Space);
     }
@@ -60,13 +56,6 @@ public class PlayerBehaviorShooting : MonoBehaviour
         }
 
         _isJumping = false;
-
-//        if (_isJumping > 0)
-//        {
-//            _rb.AddForce(Vector3.up * _isJumping, ForceMode.Impulse);
-//        }
-//
-//        _isJumping = 0f;
 
         if (_isShooting)
         {

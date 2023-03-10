@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trigger
   - Terrain
+  - Food
   layers:
   - Default
   - TransparentFX

@@ -10,18 +10,12 @@ public class MainCamera : MonoBehaviour
     private readonly float max = 70;
     private readonly float sensitivity = 10;
 
-    private Transform playerTransform;
-    private GameObject pirateAnimation;
+    public Transform playerTransform; //assigned in inspector
+    public GameObject pirateAnimation; //^
+
     private Vector3 currentRotation;
 
     private bool zoomInput;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        playerTransform = GameObject.Find("Player").transform;
-        pirateAnimation = playerTransform.GetChild(0).gameObject;
-    }
 
     private void Update()
     {

@@ -12,19 +12,22 @@ public class Player : MonoBehaviour
     private float horizontalInput;
 
     public Rigidbody rb; //assigned in inspector
-    public TMP_Text txt; //assigned in inspector
+    public TMP_Text txt; //^
+    public Transform camTransform; //^
+    public AudioSource fireSound; //^
+    public ObjectPool objectPool; //^
 
     private bool hasToggledView;
     private bool climbingLadder;
 
     private bool bulletInput;
     private bool bulletOnCooldown;
-    private readonly float bulletSpeed = 20;
-    public ObjectPool objectPool; //assigned in inspector
+    private readonly float bulletSpeed = 100;
+
 
     private void Start()
     {
-        txt.text = "Left click to toggle third person view";
+        txt.text = "Right click to toggle third person view";
     }
 
     private void Update()
@@ -61,8 +64,9 @@ public class Player : MonoBehaviour
             newBullet.gameObject.SetActive(true);
             newBullet.transform.position = transform.position + new Vector3(0, 2, 0);
             newBullet.player = this;
-            newBullet.rb.velocity = transform.forward * bulletSpeed;
+            newBullet.rb.velocity = camTransform.forward * bulletSpeed;
             StartCoroutine(DestroyBullet(newBullet));
+            fireSound.Play();
         }
     }
 
@@ -75,7 +79,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator DestroyBullet(Bullet newBullet)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         newBullet.rb.velocity = Vector3.zero;
         newBullet.gameObject.SetActive(false);
     }
